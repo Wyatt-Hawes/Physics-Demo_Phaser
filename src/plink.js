@@ -12,7 +12,20 @@ class PlinkScene extends Phaser.Scene{
         ball.setCircle();
         ball.setFriction(0.005);
         ball.setBounce(1);
+        let body1 = this.matter.add.rectangle(100, 800, 200, 32, { isStatic: true,
+        
+        
+        render: {fillStyle: 'green',
+                 
+                 lineWidth: 3}});
 
+        // Bodies.rectangle(0,0,100,100, {
+        //     render: {
+        //         fillStyle: 'red',
+        //         strokeStyle: 'blue',
+        //         lineWidth: 3
+        //     }
+        // })
 
         console.log("p scene");
         this.onStart();
