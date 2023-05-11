@@ -14,7 +14,7 @@ class Title extends PlinkScene{
         //this.input.on('pointerdown', () => {me.gotoScene('one')});
     }
 
-    update(){
+    everyTick(){
 
     }
 }
