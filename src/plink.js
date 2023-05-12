@@ -1,6 +1,8 @@
 let pad;
+let ball;
 class PlinkScene extends Phaser.Scene{
-
+    keyA;
+    keyD;
    
 
     preload(){
@@ -8,9 +10,11 @@ class PlinkScene extends Phaser.Scene{
     }
 
     create(){
+        this.keyA = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
+        this.keyD = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
         this.matter.world.setBounds();
 
-        let ball = this.matter.add.image(1348,100, 'ball');
+        ball = this.matter.add.image(1348,100, 'ball');
         ball.setScale(4);
         ball.setCircle(27);
         ball.setFriction(0.005);
@@ -60,7 +64,18 @@ class PlinkScene extends Phaser.Scene{
     }
 
     update(){
-        //this.matter.setVelocity(pad,0,0);
+        //this.matter.setVelocity(pad,0,0);a
+        if(this.keyA.isDown){
+            //ball.body.velocity -= 10;
+            // ball.body.setVelocityX(-1);
+            // ball.body.velocity.y +=10;
+            this.matter.setVelocity(ball,ball.body.velocity.x -.05, ball.body.velocity.y);
+            //console.log(ball.body.velocity.x);
+        }
+        if(this.keyD.isDown){
+            this.matter.setVelocity(ball,ball.body.velocity.x +.05, ball.body.velocity.y);
+            //console.log("d");
+        }
         this.everyTick();
     }
 
