@@ -7,25 +7,38 @@ class PlinkScene extends Phaser.Scene{
 
     preload(){
             this.load.image('ball', 'assets/aqua_ball.png');
+            this.load.image('rect', 'assets/image.png');
     }
 
     create(){
+        this.me = this;
+
+        this.input.on('pointerdown', (mouse) => console.log(Math.floor(mouse.x) + "," + Math.floor(mouse.y)));
+
         this.keyA = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
         this.keyD = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
+        
         this.matter.world.setBounds();
 
-        ball = this.matter.add.image(1348,100, 'ball');
-        ball.setScale(4);
-        ball.setCircle(27);
-        ball.setFriction(0.005);
-        ball.setBounce(1);
+        this.ball = this.matter.add.image(1348,400, 'ball');
+        this.ball.setScale(4);
+        this.ball.setCircle(25);
+        this.ball.setFriction(0.005);
+        this.ball.setBounce(1);
+        this.ball.sleepThreshhold = -1;
+
+        let r = this.matter.add.sprite(1350,60,'rect');
+        r.setRotation(3.1415/4);
+        r.setStatic(true);
 
         let wall = this.matter.add.rectangle(1260, 1250, 100, 1400, { isStatic: true, mass: 99999});
         //wall.setFriction(0);
         let base = this.matter.add.rectangle(1345, 1880, 70, 50, { isStatic: true, mass: 99999});
 
-        
+        //let bounce = this.matter.add.rectangle(100, 100, 100, 50, { isStatic: true, mass: 99999});
+
         pad = this.matter.add.rectangle(1345, 1580, 70, 100, { angle: 0, friction: .01, slop: 0, restitution: 1 });
+        //pad.transform.setFixedRotation()
         //pad = this.matter.add.rectangle(1345, 1580, 67, 50, { isStatic: false, angularStiffness: 0, stiffness: 1});
         
         //let arc = this.matter.add.arc(100,100, 100, 0,  180, false, 0xFFFFFF);
@@ -48,15 +61,15 @@ class PlinkScene extends Phaser.Scene{
         //     }
         // })
         this.matter.add.mouseSpring({length: 3,angularStiffness:1, stiffness: 0.007, angleA: 0, angleB: 0});
-        this.tweens.add({
-            targets: pad,
-            x: 1345,
-            duration: 1000,
-            repeat: 3,
-            onComplete: function(){
-                console.log("done");
-            }
-        });
+        // this.tweens.add({
+        //     targets: pad,
+        //     x: 1345,
+        //     duration: 1000,
+        //     repeat: 3,
+        //     onComplete: function(){
+        //         console.log("done");
+        //     }
+        // });
 
         //this.matter.add.mouseSpring();
         console.log("p scene");
@@ -64,6 +77,7 @@ class PlinkScene extends Phaser.Scene{
     }
 
     update(){
+        this.ball.setAwake();
         //this.matter.setVelocity(pad,0,0);a
         if(this.keyA.isDown){
             //ball.body.velocity -= 10;
