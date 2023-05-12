@@ -20,18 +20,22 @@ class PlinkScene extends Phaser.Scene{
         //wall.setFriction(0);
         let base = this.matter.add.rectangle(1345, 1880, 70, 50, { isStatic: true,});
 
-        pad = this.matter.add.rectangle(1345, 1580, 67, 50, { isStatic: false,});
+        
+        pad = this.matter.add.rectangle(1345, 1580, 67, 67, { angle: 0, friction: 0, slop: 0, restitution: 1 });
+        //pad = this.matter.add.rectangle(1345, 1580, 67, 50, { isStatic: false, angularStiffness: 0, stiffness: 1});
+        
+        
         // pad.x = 100;
         // pad.y = 100;
         // pad.setPosition(100,100);
             
-        this.matter.body.setInertia(base, Infinity);
+        //this.matter.body.setInertia(base, Infinity);
         
         //ball.body.ignorePointer = true;
 
         
-        this.matter.add.spring(pad, base, 450, 0.01);
-        //this.matter.add.worldConstraint(pad, 0, 1, { pointA: { x: 1345, y: 1580 }});
+        this.matter.add.spring(pad, base, 450, 0.01, {stiffness: 1, angularStiffness:1,angleA: 0, angleB: 0});
+        //this.matter.add.worldConstraint(pad, 1, .3, { pointA: { x: 1345, y: 1880 }});
         // Bodies.rectangle(0,0,100,100, {
         //     render: {
         //         fillStyle: 'red',
@@ -39,14 +43,14 @@ class PlinkScene extends Phaser.Scene{
         //         lineWidth: 3
         //     }
         // })
-        this.matter.add.mouseSpring();
+        this.matter.add.mouseSpring({length: 3, stiffness: 0.01, angleA: 0, angleB: 0});
         this.tweens.add({
             targets: pad,
             x: 1345,
             duration: 1000,
-            repeat: -1,
+            repeat: 3,
             onComplete: function(){
-                console.log(done);
+                console.log("done");
             }
         });
 
