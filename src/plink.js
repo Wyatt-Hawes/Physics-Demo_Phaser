@@ -1,4 +1,4 @@
-let p;
+let pad;
 class PlinkScene extends Phaser.Scene{
 
    
@@ -10,9 +10,9 @@ class PlinkScene extends Phaser.Scene{
     create(){
         this.matter.world.setBounds();
 
-        let ball = this.matter.add.image(100,100, 'ball');
+        let ball = this.matter.add.image(1348,100, 'ball');
         ball.setScale(4);
-        ball.setCircle(28);
+        ball.setCircle(27);
         ball.setFriction(0.005);
         ball.setBounce(1);
 
@@ -20,25 +20,18 @@ class PlinkScene extends Phaser.Scene{
         //wall.setFriction(0);
         let base = this.matter.add.rectangle(1345, 1880, 70, 50, { isStatic: true,});
 
-        p = this.matter.add.rectangle(1345, 1580, 67, 50, { isStatic: false,});
+        pad = this.matter.add.rectangle(1345, 1580, 67, 50, { isStatic: false,});
+        // pad.x = 100;
+        // pad.y = 100;
+        // pad.setPosition(100,100);
+            
         this.matter.body.setInertia(base, Infinity);
-        this.matter.add.mouseSpring();
-        ball.body.ignorePointer = true;
+        
+        //ball.body.ignorePointer = true;
 
-        p.setInteractive({draggable: true});
-    //     p.setInteractive({
-    //         draggable:true,
-    //         useHandCursor: true,
-    //     });
-    //     p.on('drag', (pointer, dragX, dragY) => {
-    //         p.x = 1345;
-    //         p.y = dragY;
-    //         console.log("dragging");
-    //    })
-        //this.matter.world.setBodyRenderStyle(body1, 0xFFFFFF, 0, 0, 0xFFFFFF);
-        //body1.angle = .5;
-        this.matter.add.spring(p, base, 450, 0.01);
-
+        
+        this.matter.add.spring(pad, base, 450, 0.01);
+        //this.matter.add.worldConstraint(pad, 0, 1, { pointA: { x: 1345, y: 1580 }});
         // Bodies.rectangle(0,0,100,100, {
         //     render: {
         //         fillStyle: 'red',
@@ -46,10 +39,11 @@ class PlinkScene extends Phaser.Scene{
         //         lineWidth: 3
         //     }
         // })
+        this.matter.add.mouseSpring();
         this.tweens.add({
-            targets: p,
+            targets: pad,
             x: 1345,
-            duration: 100,
+            duration: 1000,
             repeat: -1,
             onComplete: function(){
                 console.log(done);
@@ -62,7 +56,7 @@ class PlinkScene extends Phaser.Scene{
     }
 
     update(){
-        //p.angularVelocity = 0;
+        //this.matter.setVelocity(pad,0,0);
         this.everyTick();
     }
 
