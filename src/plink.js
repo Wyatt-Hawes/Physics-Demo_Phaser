@@ -16,15 +16,15 @@ class PlinkScene extends Phaser.Scene{
         ball.setFriction(0.005);
         ball.setBounce(1);
 
-        let wall = this.matter.add.rectangle(1300, 1250, 20, 1400, { isStatic: true,});
+        let wall = this.matter.add.rectangle(1260, 1250, 100, 1400, { isStatic: true, mass: 99999});
         //wall.setFriction(0);
-        let base = this.matter.add.rectangle(1345, 1880, 70, 50, { isStatic: true,});
+        let base = this.matter.add.rectangle(1345, 1880, 70, 50, { isStatic: true, mass: 99999});
 
         
-        pad = this.matter.add.rectangle(1345, 1580, 67, 67, { angle: 0, friction: 0, slop: 0, restitution: 1 });
+        pad = this.matter.add.rectangle(1345, 1580, 67, 100, { angle: 0, friction: .01, slop: 0, restitution: 1 });
         //pad = this.matter.add.rectangle(1345, 1580, 67, 50, { isStatic: false, angularStiffness: 0, stiffness: 1});
         
-        
+        //let arc = this.matter.add.arc(100,100, 100, 0,  180, false, 0xFFFFFF);
         // pad.x = 100;
         // pad.y = 100;
         // pad.setPosition(100,100);
@@ -43,7 +43,7 @@ class PlinkScene extends Phaser.Scene{
         //         lineWidth: 3
         //     }
         // })
-        this.matter.add.mouseSpring({length: 3, stiffness: 0.01, angleA: 0, angleB: 0});
+        this.matter.add.mouseSpring({length: 3, stiffness: 0.007, angleA: 0, angleB: 0});
         this.tweens.add({
             targets: pad,
             x: 1345,
