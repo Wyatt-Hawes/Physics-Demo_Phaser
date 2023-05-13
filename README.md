@@ -1,4 +1,4 @@
-# Physics-Demo_Phaser
+# Physics-Demo_Phaser: https://wyatt-hawes.github.io/Physics-Demo_Phaser/
 
 Code requirements:
 - **Continuous and Discrete Inputs**: The player can move the ball with A and D and has to use the mouse in order to launch the ball.
