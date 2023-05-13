@@ -13,6 +13,11 @@ class One extends PlinkScene{
         //     duration: 3000,
         // })
         this.makePegs();
+        this.makeWalls();
+
+
+        this.addGoodZones();
+        this.addBadZones();
     }
 
     makePegs(){
@@ -27,6 +32,23 @@ class One extends PlinkScene{
                     this.makePeg(25 + (150 * i), h + (150 * j));
                 }
             }
+        }
+    }
+    makeWalls(){
+        for(let i= 0; i < 6; i++){
+            this.makeWall(10 + (200 * i),1850);
+        }
+    }
+
+    addGoodZones(){
+        for(let i = 0; i < 3; i++){
+            this.addRect(15 + (400 * i),1775,0x00FF00);
+        }
+    }
+
+    addBadZones(){
+        for(let i = 0; i < 3; i++){
+            this.addRect(215 + (400 * i),1775,0xFF0000);
         }
     }
 

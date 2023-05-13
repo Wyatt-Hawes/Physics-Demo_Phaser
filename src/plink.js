@@ -16,7 +16,6 @@ class PlinkScene extends Phaser.Scene{
         this.me = this;
         this.cameras.main.fadeIn(this.transitionDuration, 0, 0, 0);
 
-        this.input.on('pointerdown', (mouse) => console.log(Math.floor(mouse.x) + "," + Math.floor(mouse.y)));
 
         this.keyA = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
         this.keyD = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
@@ -31,11 +30,16 @@ class PlinkScene extends Phaser.Scene{
         this.ball.setBlendMode('ADD');
         this.ball.sleepThreshhold = -1;
 
+        this.input.on('pointerdown', (mouse) => {console.log(Math.floor(mouse.x) + "," + Math.floor(mouse.y));
+        console.log('(' + this.ball.body.velocity.x + ',' + this.ball.body.velocity.y + ')')});
+
+        console.log(this.ball);
+
         let r = this.matter.add.sprite(1350,60,'rect');
         r.setRotation(3.1415/4);
         r.setStatic(true);
 
-        let wall = this.matter.add.rectangle(1260, 1250, 100, 1400, { isStatic: true, mass: 99999});
+        let wall = this.matter.add.rectangle(1260, 1250, 100, 1400, { isStatic: true, mass: 99999, frictionStatic: 0});
         //wall.setFriction(0);
         let base = this.matter.add.rectangle(1345, 1880, 70, 50, { isStatic: true, mass: 99999});
 
@@ -95,6 +99,15 @@ class PlinkScene extends Phaser.Scene{
 
     makePeg(x,y){
         this.matter.add.circle(x,y, 40,{isStatic: true})
+    }
+
+    makeWall(x,y){
+        this.matter.add.rectangle(x, y, 10, 150, { isStatic: true, mass: 99999});
+    }
+
+    addRect(x,y,Color){
+        let r = this.add.rectangle(x,y,190,150, Color);
+        r.setOrigin(0,0);
     }
 
     update(){

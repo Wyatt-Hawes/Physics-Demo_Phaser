@@ -23,8 +23,8 @@ class Title extends PlinkScene{
             delay: 500
         });
 
-        let p1 = this.matter.add.rectangle(710, 575, 1000, 50, { isStatic: true, mass: 99999});
-        let p2 = this.matter.add.rectangle(510, 775, 1000, 50, { isStatic: true, mass: 99999});
+        let p1 = this.matter.add.rectangle(710, 575, 1000, 50, { isStatic: true, mass: 99999, friction: 1});
+        let p2 = this.matter.add.rectangle(510, 775, 1000, 50, { isStatic: true, mass: 99999, friction: 1});
 
         //Zone
         let z = this.add.zone(900,300,500, 600 );
