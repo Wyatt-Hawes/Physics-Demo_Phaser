@@ -30,7 +30,7 @@ class PlinkScene extends Phaser.Scene{
         
         this.matter.world.setBounds();
 
-        this.ball = this.matter.add.image(1348,1100, 'ball');
+        this.ball = this.matter.add.image(1348,1100, 'ball',null , {lineOpacity: 1});
         this.ball.setScale(4);
         this.ball.setCircle(25);
         this.ball.setFriction(0.005);
