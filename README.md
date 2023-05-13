@@ -12,3 +12,5 @@ Asset sources:
 - The ball source is the ball asset used in many phaser demos. I removed the background of the image in photoshop before I used it.
 
 - The bouncer in the top right was a screenshot of by computers desktop background that was cropped.
+
+- Note: Some of the debug options are purposefully enabled because I liked the look of the white-outlined boxes and the spring.
