@@ -29,6 +29,7 @@ class PlinkScene extends Phaser.Scene{
         this.ball.setBounce(1);
         this.ball.setBlendMode('ADD');
         this.ball.sleepThreshhold = -1;
+        this.ball.setDepth(1000);
 
         this.input.on('pointerdown', (mouse) => {console.log(Math.floor(mouse.x) + "," + Math.floor(mouse.y));
         console.log('(' + this.ball.body.velocity.x + ',' + this.ball.body.velocity.y + ')')});
@@ -97,6 +98,13 @@ class PlinkScene extends Phaser.Scene{
         return false
     }
 
+    inBox(x1,y1,x2,y2){
+        if(this.xbetween(x1,x2) && this.ybetween(y1,y2)){
+            return true;
+        }
+        return false;
+    }
+
     makePeg(x,y){
         this.matter.add.circle(x,y, 40,{isStatic: true})
     }
@@ -108,6 +116,13 @@ class PlinkScene extends Phaser.Scene{
     addRect(x,y,Color){
         let r = this.add.rectangle(x,y,190,150, Color);
         r.setOrigin(0,0);
+    }
+
+    isStopped(){
+        if(Math.abs(this.ball.body.velocity.x) < 0.05 && Math.abs(this.ball.body.velocity.y) < 0.05){
+            return true;
+        }
+        return false;
     }
 
     update(){

@@ -55,7 +55,7 @@ class Title extends PlinkScene{
             this.nextZone = 1;
             let t = this.add.text(450,1000,"Good Job!");
             t.setFontSize("40pt");
-            this.time.delayedCall(3000, () => this.gotoScene('one'));
+            this.time.delayedCall(1500, () => this.gotoScene('one'));
         }
         //console.log(this.ball.x);
     }
