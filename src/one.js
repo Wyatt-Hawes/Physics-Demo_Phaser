@@ -2,13 +2,12 @@
 class One extends PlinkScene{
     constructor(){
         super("one");
-        this.finished = 0;
     }
     
     onStart(){
         this.levelText = this.add.text(500,50,"Level 1");
         this.levelText.setFontSize("60pt");
-
+        this.finished = 0;
         // this.tweens.add({
         //     targets: t,
         //     alpha: 0,
@@ -79,7 +78,7 @@ class One extends PlinkScene{
         if(this.finished == 0 && this.inGoodZone() && this.isStopped()){
             this.finished = 1;
             this.levelText.setText("Good Job!");
-            this.gotoScene('two')
+            this.gotoScene('intermtwo')
         }
     }
 }

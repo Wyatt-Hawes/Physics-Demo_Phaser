@@ -9,7 +9,7 @@ const game = new Phaser.Game({
             debug: {
 
                 showAxes: false,
-                showAngleIndicator: true,
+                showAngleIndicator: false,
                 angleColor: 0xe81153,
 
                 showBroadphase: false,
@@ -80,7 +80,7 @@ const game = new Phaser.Game({
         width: 1380,
         height: 1920
     },
-    scene: [Three, Two, One, Title, ],
+    scene: [Title,Victory, IntermThree, IntermTwo, IntermOne,  Three, Two, One ],
     title: "Adventure Game",
 });
 

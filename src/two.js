@@ -1,10 +1,11 @@
 class Two extends PlinkScene{
     constructor(){
         super("two");
-        this.finished = 0;
+        
     }
 
     onStart(){
+        this.finished = 0;
         this.levelText = this.add.text(500,50,"Level 2");
         this.levelText.setFontSize("60pt");
 
@@ -66,7 +67,7 @@ class Two extends PlinkScene{
             this.finished = 1;
             this.levelText.setText("Good Job!");
             this.flag = true;
-            this.gotoScene('three')
+            this.gotoScene('intermthree')
         }
         if(this.flag){
             this.ball.setPosition(this.z1.x + 80, this.z1.y + 70);

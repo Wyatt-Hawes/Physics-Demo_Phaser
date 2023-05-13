@@ -1,12 +1,11 @@
 class Title extends PlinkScene{
     constructor(){
         super("title");
-        this.triggered = 0;
-        this.nextZone = 0;
     }
 
     onStart(){
-        
+        this.triggered = 0;
+        this.nextZone = 0;
         let t = this.add.text(450,100, "Plink!", );
         t.setColor('#ffFFFF');
         t.setFontSize('100pt');
@@ -46,7 +45,7 @@ class Title extends PlinkScene{
         if(this.triggered == 0 & this.xbetween(850, 1250) && this.ybetween(0,550)){
             console.log("inside");
             this.triggered = 1;
-            let t = this.add.text(150,200,"Press A and D to influence the ball!");
+            let t = this.add.text(150,250,"Press A and D to influence the ball!");
             t.setFontSize("40pt");
         }
 
@@ -55,7 +54,7 @@ class Title extends PlinkScene{
             this.nextZone = 1;
             let t = this.add.text(450,1000,"Good Job!");
             t.setFontSize("40pt");
-            this.time.delayedCall(1500, () => this.gotoScene('one'));
+            this.time.delayedCall(1500, () => this.gotoScene('intermone'));
         }
         //console.log(this.ball.x);
     }
