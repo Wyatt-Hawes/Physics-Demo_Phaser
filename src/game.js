@@ -80,7 +80,7 @@ const game = new Phaser.Game({
         width: 1380,
         height: 1920
     },
-    scene: [Title, One],
+    scene: [One, Title],
     title: "Adventure Game",
 });
 

@@ -1,3 +1,5 @@
+
+
 let pad;
 let ball;
 class PlinkScene extends Phaser.Scene{
@@ -12,6 +14,7 @@ class PlinkScene extends Phaser.Scene{
 
     create(){
         this.me = this;
+        this.cameras.main.fadeIn(this.transitionDuration, 0, 0, 0);
 
         this.input.on('pointerdown', (mouse) => console.log(Math.floor(mouse.x) + "," + Math.floor(mouse.y)));
 
@@ -20,11 +23,12 @@ class PlinkScene extends Phaser.Scene{
         
         this.matter.world.setBounds();
 
-        this.ball = this.matter.add.image(1348,400, 'ball');
+        this.ball = this.matter.add.image(1348,1100, 'ball');
         this.ball.setScale(4);
         this.ball.setCircle(25);
         this.ball.setFriction(0.005);
         this.ball.setBounce(1);
+        this.ball.setBlendMode('ADD');
         this.ball.sleepThreshhold = -1;
 
         let r = this.matter.add.sprite(1350,60,'rect');
@@ -76,6 +80,23 @@ class PlinkScene extends Phaser.Scene{
         this.onStart();
     }
 
+    xbetween(v1, v2){
+        if(this.ball.x > v1 && this.ball.x < v2){
+            return true;
+        }
+        return false;
+    }
+    ybetween(v1,v2){
+        if(this.ball.y > v1 && this.ball.y < v2){
+            return true;
+        }
+        return false
+    }
+
+    makePeg(x,y){
+        this.matter.add.circle(x,y, 40,{isStatic: true})
+    }
+
     update(){
         this.ball.setAwake();
         //this.matter.setVelocity(pad,0,0);a
@@ -83,11 +104,11 @@ class PlinkScene extends Phaser.Scene{
             //ball.body.velocity -= 10;
             // ball.body.setVelocityX(-1);
             // ball.body.velocity.y +=10;
-            this.matter.setVelocity(ball,ball.body.velocity.x -.05, ball.body.velocity.y);
+            this.matter.setVelocity(this.ball,this.ball.body.velocity.x -.05, this.ball.body.velocity.y);
             //console.log(ball.body.velocity.x);
         }
         if(this.keyD.isDown){
-            this.matter.setVelocity(ball,ball.body.velocity.x +.05, ball.body.velocity.y);
+            this.matter.setVelocity(this.ball,this.ball.body.velocity.x +.05, this.ball.body.velocity.y);
             //console.log("d");
         }
         this.everyTick();
@@ -97,8 +118,8 @@ class PlinkScene extends Phaser.Scene{
 
 
     gotoScene(key) {
-        this.cameras.main.fade(this.transitionDuration, 0, 0, 0);
-        this.time.delayedCall(this.transitionDuration, () => {
+        this.cameras.main.fade(3000, 0, 0, 0);
+        this.time.delayedCall(3000, () => {
             this.scene.start(key, { inventory: this.inventory });
         });
     }
