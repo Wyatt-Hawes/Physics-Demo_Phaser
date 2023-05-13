@@ -65,7 +65,7 @@ class PlinkScene extends Phaser.Scene{
             
         //this.matter.body.setInertia(base, Infinity);
         
-        //ball.body.ignorePointer = true;
+        this.ball.body.ignorePointer = true;
 
         
         this.matter.add.spring(pad, base, 450, 0.01, {stiffness: 1, angularStiffness:1,angleA: 0, angleB: 0});
