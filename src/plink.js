@@ -110,7 +110,8 @@ class PlinkScene extends Phaser.Scene{
     }
 
     makeWall(x,y){
-        this.matter.add.rectangle(x, y, 10, 150, { isStatic: true, mass: 99999});
+        let r = this.matter.add.rectangle(x, y, 10, 150, { isStatic: true, mass: 99999});
+        return r;
     }
 
     addRect(x,y,Color){
