@@ -5,6 +5,10 @@ let ball;
 class PlinkScene extends Phaser.Scene{
     keyA;
     keyD;
+
+    keyI;
+    keyO;
+    keyP;
    
 
     preload(){
@@ -19,6 +23,10 @@ class PlinkScene extends Phaser.Scene{
 
         this.keyA = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
         this.keyD = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
+
+        this.keyI = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.I);
+        this.keyO = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.O);
+        this.keyP = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.P);
         
         this.matter.world.setBounds();
 
@@ -115,7 +123,7 @@ class PlinkScene extends Phaser.Scene{
     }
 
     addRect(x,y,Color){
-        let r = this.add.rectangle(x,y,190,150, Color);
+        let r = this.add.rectangle(x,y,190,150, Color, 0.5);
         r.setOrigin(0,0);
     }
 
@@ -128,6 +136,9 @@ class PlinkScene extends Phaser.Scene{
 
     update(){
         this.ball.setAwake();
+        if(this.inBox(1300,1750,1400,1900)){
+            this.ball.setPosition(1348,1100);
+        }
         //this.matter.setVelocity(pad,0,0);a
         if(this.keyA.isDown){
             //ball.body.velocity -= 10;
@@ -140,6 +151,17 @@ class PlinkScene extends Phaser.Scene{
             this.matter.setVelocity(this.ball,this.ball.body.velocity.x +.05, this.ball.body.velocity.y);
             //console.log("d");
         }
+
+        if(this.keyI.isDown){
+            this.scene.start('one');
+        }
+        if(this.keyO.isDown){
+            this.scene.start('two');
+        }
+        if(this.keyP.isDown){
+            this.scene.start('three');
+        }
+
         this.everyTick();
     }
 
@@ -149,7 +171,7 @@ class PlinkScene extends Phaser.Scene{
     gotoScene(key) {
         this.cameras.main.fade(3000, 0, 0, 0);
         this.time.delayedCall(3000, () => {
-            this.scene.start(key, { inventory: this.inventory });
+            this.scene.start(key);
         });
     }
 
